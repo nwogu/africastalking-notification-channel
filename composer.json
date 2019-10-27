@@ -1,0 +1,22 @@
+{
+    "name": "nwogu/africastalking-notification-channel",
+    "description": "Laravel Notification Channel To Send SMS via Africa's Talking",
+    "type": "library",
+    "require": {
+        "africastalking/africastalking": "dev-master",
+        "laravel/framework": "^5.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gabriel",
+            "email": "nwogugabriel@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nwogu\\AfricasTalking\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
