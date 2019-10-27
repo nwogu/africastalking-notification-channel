@@ -82,8 +82,7 @@ This method will receive a $notifiable entity and should return a
     public function toAfricasTalking($notifiable)
     {
         return (new AfricasTalkingMessage)
-                    ->content('Your SMS message content')
-                    ->from('BABA TOPE LIMITED');
+                    ->content('Your SMS message content');
     }
 ```  
 
