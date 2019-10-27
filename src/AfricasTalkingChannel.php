@@ -2,9 +2,7 @@
 
 namespace Nwogu\AfricasTalking;
 
-use AfricasTalking\SDK\AfricasTalking;
 use Illuminate\Notifications\Notification;
-use Nwogu\AfricasTalking\AfricasTalkingMessage;
 
 class AfricasTalkingChannel
 {
@@ -13,19 +11,6 @@ class AfricasTalkingChannel
      */
     protected static $getPhoneNumber = "routeNotificationForAfricasTalking";
 
-    /**
-     * @var AfricasTalking
-     * 
-     */
-    protected $at;
-
-    /**
-     * @param AfricasTalking
-     */
-    public function construct(AfricasTalking $at)
-    {
-        $this->at = $at;
-    }
     /**
      * Send the given notification as SMS via Africa's Talking.
      *
@@ -41,7 +26,7 @@ class AfricasTalkingChannel
                 ? $notifiable->{static::$getPhoneNumber}($notification) 
                 : $notifiable->phone_number;
 
-        return $this->at->send([
+        return app("at")->send([
             "to" => $phoneNumber,
             "message" => $message->getContent(),
             "from" => $message->getSender() ?? 

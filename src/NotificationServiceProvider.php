@@ -14,7 +14,7 @@ class NotificationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(AfricasTalking::class, function ($app) {
+        $this->app->bind("at", function ($app) {
             $at = new AfricasTalking(
                 config("services.africastalking.username"),
                 config("services.africastalking.key")
