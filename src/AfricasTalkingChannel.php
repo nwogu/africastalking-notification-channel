@@ -8,6 +8,10 @@ use Nwogu\AfricasTalking\AfricasTalkingMessage;
 
 class AfricasTalkingChannel
 {
+    /**
+     * Route Notification Method
+     */
+    protected static $getPhoneNumber = "routeNotificationForAfricasTalking";
 
     /**
      * @var AfricasTalking
@@ -33,16 +37,15 @@ class AfricasTalkingChannel
     {
         $message = $notification->toAfricasTalking($notifiable);
 
-        $getPhoneNumber = "routeNotificationForAfricasTalking";
-
-        $phoneNumber = method_exists($notifiable, $getPhoneNumber)
-                ? $notifiable->$getPhoneNumber($notification) : $notifiable->phone_number;
+        $phoneNumber = method_exists($notifiable, static::$getPhoneNumber)
+                ? $notifiable->{static::$getPhoneNumber}($notification) 
+                : $notifiable->phone_number;
 
         return $this->at->send([
             "to" => $phoneNumber,
             "message" => $message->getContent(),
-            "from" => $message->getSender() ?? config("services.africastalking.from", null)
-        ]);;
+            "from" => $message->getSender() ?? 
+                config("services.africastalking.from", null) ]);
     }
 }
 
