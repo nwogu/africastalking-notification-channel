@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nwogu\\Africastalking\\NotificationServiceProvider"
+                "Nwogu\\AfricasTalking\\NotificationServiceProvider"
             ]
         }
     },
