@@ -18,6 +18,13 @@
             "Nwogu\\AfricasTalking\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nwogu\\Africastalking\\NotificationServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

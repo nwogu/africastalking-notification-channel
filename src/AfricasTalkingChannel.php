@@ -8,6 +8,20 @@ use Nwogu\AfricasTalking\AfricasTalkingMessage;
 
 class AfricasTalkingChannel
 {
+
+    /**
+     * @var AfricasTalking
+     * 
+     */
+    protected $at;
+
+    /**
+     * @param AfricasTalking
+     */
+    public function construct(AfricasTalking $at)
+    {
+        $this->at = $at;
+    }
     /**
      * Send the given notification as SMS via Africa's Talking.
      *
@@ -24,29 +38,11 @@ class AfricasTalkingChannel
         $phoneNumber = method_exists($notifiable, $getPhoneNumber)
                 ? $notifiable->$getPhoneNumber($notification) : $notifiable->phone_number;
 
-        return $this->sendNotification($message, $phoneNumber);
-    }
-
-    /**
-     * Send Notification Via Africa's Talking
-     * 
-     * @param string|array $message
-     * @param string $phoneNumber
-     * 
-     * @return void
-     */
-    private function sendNotification(AfricasTalkingMessage $message, $phoneNumber)
-    {
-        $at = new AfricasTalking(
-            config("services.africastalking.username"),
-            config("services.africastalking.key")
-        );
-
-        $at->sms()->send([
+        return $this->at->send([
             "to" => $phoneNumber,
             "message" => $message->getContent(),
             "from" => $message->getSender() ?? config("services.africastalking.from", null)
-        ]);
+        ]);;
     }
 }
 
