@@ -29,8 +29,7 @@ class AfricasTalkingChannel
         return app("at")->send([
             "to" => $phoneNumber,
             "message" => $message->getContent(),
-            "from" => $message->getSender() ?? 
-                config("services.africastalking.from", null) ]);
+            "from" => $message->getSender() ]);
     }
 }
 
