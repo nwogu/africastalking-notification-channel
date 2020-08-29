@@ -3,8 +3,7 @@
     "description": "Laravel Notification Channel To Send SMS via Africa's Talking",
     "type": "library",
     "require": {
-        "africastalking/africastalking": "dev-master",
-        "laravel/framework": "^5.6"
+        "africastalking/africastalking": "dev-master"
     },
     "license": "MIT",
     "authors": [
